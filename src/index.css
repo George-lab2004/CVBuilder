@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
+/* #F9FAFF */
+/* #ECF2F9 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Satoshi", "sans-serif"; /* font family */
+  --hero-bg: #f9faff; /* light background for hero/intro section */
+  --hero-bg-alt: #ecf2f9; /* alternate background layer for hero */
+  --section-text-dark: #4b5563; /* dark text for sections */
+  --section-border: #e5e7eb; /* light border or separator */
+  --section-surface: #f3f4f6; /* light surface/panel background */
+}
