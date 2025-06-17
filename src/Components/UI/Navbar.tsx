@@ -47,7 +47,7 @@ export default function Navbars() {
       </Link>
       <button
         onClick={toggleTheme}
-        className="px-4 py-2 border  hover:bg-gray-200 dark:hover:bg-gray-700 transition my-auto"
+        className="px-2 py-2 mt-3 md:mt-0 cursor-pointer md:px-4 md:py-2 border  hover:bg-gray-200 dark:hover:bg-gray-700 transition my-auto"
         aria-label="Toggle dark mode"
       >
         {isDarkMode ? "🌙 Dark" : "☀️ Light"}
@@ -61,11 +61,11 @@ export default function Navbars() {
       <nav className="hidden md:flex justify-between items-center bg-white dark:bg-gray-900 px-10 lg:px-28 py-6 ">
         <Link
           to="/"
-          className="text-3xl font-bold text-gray-800 dark:text-gray-100"
+          className="text-3xl font-nav font-bold text-gray-800 dark:text-gray-100"
         >
           BuildMyCv
         </Link>
-        <div className="flex space-x-8 text-lg font-medium text-gray-700 dark:text-gray-200">
+        <div className="flex space-x-8 text-lg font-medium text-gray-700 dark:text-gray-200 font-nav">
           <NavLinks />
         </div>
       </nav>
@@ -74,7 +74,7 @@ export default function Navbars() {
       <nav className="md:hidden flex justify-between items-center bg-white dark:bg-gray-900 px-6 py-5 ">
         <Link
           to="/"
-          className="text-2xl font-bold text-gray-800 dark:text-gray-100"
+          className="text-2xl font-nav  font-bold text-gray-800 dark:text-gray-100"
         >
           BuildMyCv
         </Link>
@@ -96,7 +96,7 @@ export default function Navbars() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="md:hidden flex flex-col items-center space-y-4  px-4 py-4 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200  shadow"
+          className="md:hidden flex flex-col items-center space-y-4  px-4 py-4 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200  shadow font-nav"
         >
           <NavLinks />
         </motion.div>

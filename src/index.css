@@ -6,10 +6,37 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-display: "Satoshi", "sans-serif"; /* font family */
-  --hero-bg: #f9faff; /* light background for hero/intro section */
-  --hero-bg-alt: #ecf2f9; /* alternate background layer for hero */
-  --section-text-dark: #4b5563; /* dark text for sections */
-  --section-border: #e5e7eb; /* light border or separator */
-  --section-surface: #f3f4f6; /* light surface/panel background */
+  /* Font Family */
+  --font-display: "Montserrat", "sans-serif"; /* font family for headers */
+  --font-body: "Roboto", "sans-serif"; /* font family for body text */
+  --font-nav: "Lato", "sans-serif"; /* font family for navbar */
+
+  /* Light Mode Colors */
+  --color-hero: #f9faff; /* light background for hero/intro section */
+  --color-herotwo: #ffffff; /* alternate background layer for hero */
+  --color-section-text: #333333; /* dark text for sections */
+  --color-section-border: #e1e1e1; /* light border or separator */
+  --color-section-surface: #f3f4f6; /* light surface/panel background */
+
+  /* Primary & Secondary Colors */
+  --color-primary-color: #4a90e2; /* professional blue for buttons, links, and highlights */
+  --color-secondary-color: #333333; /* dark gray text */
+  --color-accent-color: #ffd700; /* gold or muted yellow for accents */
+
+  --color-dark: #121212; /* Base dark background (kept) */
+  --color-dark-hero: #0a1120; /* Slightly lighter than base for hero section */
+  --color-dark-section-text: #f0f0f0; /* Softer white for better readability */
+  --color-dark-section-border: #3a3a3a; /* Medium contrast border */
+  --color-dark-section-surface: #242424; /* Surface with subtle contrast */
+
+  /* Improved Primary & Secondary Colors */
+  --color-dark-primary-color: #5d9cec; /* Brighter, more accessible blue */
+  --color-dark-secondary-color: #cccccc; /* Softer gray for secondary text */
+  --color-dark-accent-color: #ffcc00; /* Warmer, more vibrant accent */
+
+  /* Additional Dark Mode Enhancements */
+  --color-dark-hover: #2d2d2d; /* Hover states for interactive elements */
+  --color-dark-disabled: #3a3a3a; /* Disabled state color */
+  --color-dark-success: #4caf50; /* Success state */
+  --color-dark-error: #f44336;
 }
