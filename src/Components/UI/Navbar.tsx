@@ -30,24 +30,33 @@ export default function Navbars() {
 
   const NavLinks = () => (
     <>
-      <Link to="/buildCV" className="hover:text-blue-500 transition my-auto">
-        CvBuilder
+      <Link
+        to="/buildCV"
+        className="hover:text-blue-500   text-xl  transition my-1"
+      >
+        📄 CvBuilder{" "}
       </Link>
       <Link
         to="/coverLetter"
-        className="hover:text-blue-500 transition my-auto"
+        className="hover:text-blue-500  text-xl transition  my-1"
       >
-        CoverLetter
+        📝 CoverLetter
       </Link>
-      <Link to="/myCVs" className="hover:text-blue-500 transition my-auto">
-        MyCVs
+      <Link
+        to="/myCVs"
+        className="hover:text-blue-500 text-xl   transition my-1"
+      >
+        📂 MyCVs
       </Link>
-      <Link to="/login" className="hover:text-blue-500 transition my-auto">
-        Login
+      <Link
+        to="/login"
+        className="hover:text-blue-500  text-xl  transition my-1"
+      >
+        🔐 Login
       </Link>
       <button
         onClick={toggleTheme}
-        className="px-2 py-2 mt-3 md:mt-0 cursor-pointer md:px-4 md:py-2 border  hover:bg-gray-200 dark:hover:bg-gray-700 transition my-auto"
+        className="px-2 py-2 mt-3 md:mt-0 cursor-pointer my-1 md:px-4 md:py-2 border  hover:bg-gray-200 dark:hover:bg-gray-700 transition "
         aria-label="Toggle dark mode"
       >
         {isDarkMode ? "🌙 Dark" : "☀️ Light"}

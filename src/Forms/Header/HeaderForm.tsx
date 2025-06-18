@@ -1,5 +1,5 @@
 import { Label, TextInput } from "flowbite-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 
 export function HeaderForm({
@@ -11,11 +11,31 @@ export function HeaderForm({
 }) {
   const [tempName, setTempName] = useState("");
   const [tempRole, setTempRole] = useState("");
-  const [name, setname] = useState("");
-  const [role, setrole] = useState("");
-  const [block, setblock] = useState(false);
-  const [blockRole, setBlockRole] = useState(false);
+  const [name, setname] = useState(() => {
+    return localStorage.getItem("name") || "";
+  });
+  const [role, setrole] = useState(() => {
+    return localStorage.getItem("role") || "";
+  });
+  const [block, setblock] = useState(() => {
+    return localStorage.getItem("blockName") === "true";
+  });
+  const [blockRole, setBlockRole] = useState(() => {
+    return localStorage.getItem("blockRole") === "true";
+  });
 
+  useEffect(() => {
+    localStorage.setItem("name", name);
+  }, [name]);
+  useEffect(() => {
+    localStorage.setItem("role", role);
+  }, [role]);
+  useEffect(() => {
+    localStorage.setItem("blockName", block.toString());
+  }, [block]);
+  useEffect(() => {
+    localStorage.setItem("blockRole", blockRole.toString());
+  }, [blockRole]);
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTempName(e.target.value);
   };
@@ -59,7 +79,7 @@ export function HeaderForm({
   };
 
   return (
-    <div className="p-4">
+    <div className="p-6  bg-white dark:bg-gray-900 shadow-md transition-colors duration-300 space-y-4">
       {/* Name Field */}
       <form onSubmit={handleSubmitName} className="space-y-1">
         <Label

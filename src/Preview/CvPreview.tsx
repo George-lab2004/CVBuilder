@@ -1,4 +1,5 @@
 import Header from "../Forms/Header/Header";
+import Objective from "../Forms/Objective/Objective";
 import SocialLinks from "../Forms/SocialLinks/SocialLinks";
 
 export default function CvPreview({
@@ -10,6 +11,8 @@ export default function CvPreview({
   portfolio,
   city,
   phone,
+  summary,
+  SummaryTitle,
 }: {
   name: string;
   role: string;
@@ -19,6 +22,8 @@ export default function CvPreview({
   portfolio: string;
   city: string;
   phone: string;
+  summary: string | null;
+  SummaryTitle: string | null;
 }) {
   return (
     <div className=" px-4 py-2  m-2 mb-2 bg-white ">
@@ -31,6 +36,7 @@ export default function CvPreview({
         city={city}
         phone={phone}
       />
+      <Objective Summary={summary} summaryTitle={SummaryTitle} />
     </div>
   );
 }
