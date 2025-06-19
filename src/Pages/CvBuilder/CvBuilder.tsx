@@ -5,6 +5,14 @@ import { SocialLinksForm } from "../../Forms/SocialLinks/SocialLinksForm";
 import { useReactToPrint } from "react-to-print";
 import { usePersistentState } from "../../Preview/usePersistentState";
 import ObjectiveForm from "../../Forms/Objective/ObjectiveForm";
+import ExperienceForm from "../../Forms/Experience/ExperienceForm";
+
+type ExperienceItem = {
+  title: string;
+  date: string;
+  location: string;
+  description: string[];
+};
 
 export default function CvBuilder() {
   const [name, setName] = usePersistentState("name", "");
@@ -15,21 +23,36 @@ export default function CvBuilder() {
   const [portfolio, setPortfolio] = usePersistentState("portfolio", "");
   const [city, setCity] = usePersistentState("city", "");
   const [phone, setPhone] = usePersistentState("phone", "");
-  // Using a persistent state for summary
-  // This allows the summary to be saved across page reloads
-
-  const [Summary, setSummary] = usePersistentState("summary", "");
-  const [SummaryTitle, setSummaryTitle] = usePersistentState(
+  const [summary, setSummary] = usePersistentState("summary", "");
+  const [summaryTitle, setSummaryTitle] = usePersistentState(
     "summaryTitle",
     ""
   );
 
-  const [currentPage, setCurrentPage] = useState(1); // 👈 Track current page
+  const [experiences, setExperiences] = usePersistentState<ExperienceItem[]>(
+    "experiences",
+    []
+  );
+
+  const [currentPage, setCurrentPage] = useState(1);
   const contentRef = useRef<HTMLDivElement>(null);
   const reactToPrintFn = useReactToPrint({ contentRef });
 
   const nextPage = () => setCurrentPage((prev) => prev + 1);
   const prevPage = () => setCurrentPage((prev) => prev - 1);
+
+  const renderPageTitle = () => {
+    switch (currentPage) {
+      case 1:
+        return "📝 Personal & Contact Information";
+      case 2:
+        return "🎯 Objective & Career Summary";
+      case 3:
+        return "💼 Work Experience";
+      default:
+        return "";
+    }
+  };
 
   return (
     <section className="py-12 bg-gray-100 dark:bg-cyan-700 min-h-screen md:py-20">
@@ -38,6 +61,11 @@ export default function CvBuilder() {
           {/* ======= LEFT: Form Section ======= */}
           <div className="lg:w-1/2 mb-8 lg:mb-0">
             <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md p-6 transition-colors duration-300">
+              {/* Page Title */}
+              <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
+                {renderPageTitle()}
+              </h2>
+
               {/* Page 1 */}
               {currentPage === 1 && (
                 <>
@@ -61,20 +89,28 @@ export default function CvBuilder() {
                 />
               )}
 
-              {/* Page Navigation */}
-              <div className="mt-6 flex justify-between">
+              {/* Page 3 */}
+              {currentPage === 3 && (
+                <ExperienceForm
+                  setExperiences={setExperiences}
+                  experiences={experiences}
+                />
+              )}
+
+              {/* Navigation Buttons */}
+              <div className="mt-6 flex flex-wrap items-center justify-start gap-3">
                 {currentPage > 1 && (
                   <button
                     onClick={prevPage}
-                    className="px-6 py-2 rounded-lg bg-gray-500 hover:bg-gray-600 text-white shadow transition"
+                    className="px-4 py-2 text-sm font-medium rounded-lg bg-gray-500 hover:bg-gray-600 text-white shadow transition"
                   >
                     Previous
                   </button>
                 )}
-                {currentPage < 2 && (
+                {currentPage < 3 && (
                   <button
                     onClick={nextPage}
-                    className="px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow transition"
+                    className="px-4 py-2 text-sm font-medium rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow transition"
                   >
                     Next
                   </button>
@@ -90,21 +126,7 @@ export default function CvBuilder() {
                       window.location.reload();
                     }
                   }}
-                  className="
-    mt-4 px-4 py-2 rounded-lg
-    text-sm font-medium
-    bg-red-50 text-red-700 
-    hover:bg-red-100 hover:text-red-800
-    dark:bg-red-900/30 dark:text-red-400
-    dark:hover:bg-red-900/40 dark:hover:text-red-300
-    transition-colors duration-200
-    border border-red-200
-    dark:border-red-800/50
-    shadow-sm
-    flex items-center gap-2
-    cursor-pointer
-    focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2
-  "
+                  className="px-4 py-2 text-sm font-medium rounded-lg bg-red-50 text-red-700 hover:bg-red-100 hover:text-red-800 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/40 dark:hover:text-red-300 transition-colors duration-200 border border-red-200 dark:border-red-800/50 shadow-sm flex items-center gap-2"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -138,8 +160,9 @@ export default function CvBuilder() {
                 portfolio={portfolio}
                 city={city}
                 phone={phone}
-                summary={Summary}
-                SummaryTitle={SummaryTitle}
+                summary={summary}
+                SummaryTitle={summaryTitle}
+                experiences={experiences}
               />
             </div>
             <button
@@ -148,6 +171,7 @@ export default function CvBuilder() {
             >
               Download CV
             </button>
+
             {/* A4 Preview Tip */}
             <div className="mt-4 flex items-start gap-2 bg-yellow-100 text-yellow-800 dark:bg-yellow-300/10 dark:text-yellow-200 border border-yellow-300 dark:border-yellow-500 rounded-lg px-4 py-3 shadow-sm text-sm max-w-md">
               <span className="text-xl">💡</span>

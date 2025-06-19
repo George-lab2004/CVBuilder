@@ -1,6 +1,14 @@
+import Experience from "../Forms/Experience/Experience";
 import Header from "../Forms/Header/Header";
 import Objective from "../Forms/Objective/Objective";
 import SocialLinks from "../Forms/SocialLinks/SocialLinks";
+
+type ExperienceItem = {
+  title: string;
+  date: string;
+  location: string;
+  description: string[];
+};
 
 export default function CvPreview({
   name,
@@ -13,6 +21,7 @@ export default function CvPreview({
   phone,
   summary,
   SummaryTitle,
+  experiences,
 }: {
   name: string;
   role: string;
@@ -24,9 +33,10 @@ export default function CvPreview({
   phone: string;
   summary: string | null;
   SummaryTitle: string | null;
+  experiences: ExperienceItem[];
 }) {
   return (
-    <div className=" px-4 py-2  m-2 mb-2 bg-white ">
+    <div className="px-4 py-2 m-2 mb-2 bg-white">
       <Header name={name} job={role} />
       <SocialLinks
         github={github}
@@ -37,6 +47,7 @@ export default function CvPreview({
         phone={phone}
       />
       <Objective Summary={summary} summaryTitle={SummaryTitle} />
+      <Experience experiences={experiences} />
     </div>
   );
 }

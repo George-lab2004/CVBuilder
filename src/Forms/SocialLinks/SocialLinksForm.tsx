@@ -18,12 +18,13 @@ export function SocialLinksForm({
   setCity: React.Dispatch<React.SetStateAction<string>>;
   setPhone: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  const emailField = useFormField("", () => setEmail(""));
-  const githubField = useFormField("", () => setGithub(""));
-  const linkedInField = useFormField("", () => setLinkedIn(""));
-  const portfolioField = useFormField("", () => setPortfolio(""));
-  const cityField = useFormField("", () => setCity(""));
-  const phoneField = useFormField("", () => setPhone(""));
+  const emailField = useFormField("", () => setEmail(""), "email");
+  const githubField = useFormField("", () => setGithub(""), "github");
+  const linkedInField = useFormField("", () => setLinkedIn(""), "linkedIn");
+  const portfolioField = useFormField("", () => setPortfolio(""), "portfolio");
+  const cityField = useFormField("", () => setCity(""), "city");
+  const phoneField = useFormField("", () => setPhone(""), "phone");
+
   const [countryCode, setCountryCode] = useState("+20");
 
   return (
@@ -242,6 +243,14 @@ export function SocialLinksForm({
           />
         )}
       </form>
+      <div className="mt-4 flex items-start gap-2 bg-green-100 text-green-800 dark:bg-green-300/10 dark:text-green-200 border border-green-300 dark:border-green-500 rounded-lg px-4 py-3 shadow-sm text-sm max-w-md">
+        <span className="text-xl">💡</span>
+        <div>
+          <strong className="font-semibold">Tip:</strong> Adding links to
+          GitHub, LinkedIn, or your portfolio boosts your credibility. Let
+          employers explore your work with one click.
+        </div>
+      </div>
     </div>
   );
 }

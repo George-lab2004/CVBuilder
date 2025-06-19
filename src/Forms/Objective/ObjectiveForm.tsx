@@ -28,8 +28,12 @@ export default function ObjectiveForm({
   setSummary: React.Dispatch<React.SetStateAction<string>>;
   setSummaryTitle: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  const summaryField = useFormField("", () => setSummary(""));
-  const summaryTitleField = useFormField("", () => setSummaryTitle(""));
+  const summaryField = useFormField("", () => setSummary(""), "summary");
+  const summaryTitleField = useFormField(
+    "",
+    () => setSummaryTitle(""),
+    "summaryTitle"
+  );
 
   return (
     <div className="p-6 rounded-xl bg-white dark:bg-gray-900 shadow-md transition-colors duration-300 space-y-6">
@@ -122,6 +126,14 @@ export default function ObjectiveForm({
           Add
         </button>
       </form>
+      <div className="mt-4 flex items-start gap-2 bg-blue-100 text-blue-800 dark:bg-blue-300/10 dark:text-blue-200 border border-blue-300 dark:border-blue-500 rounded-lg px-4 py-3 shadow-sm text-sm max-w-md">
+        <span className="text-xl">💡</span>
+        <div>
+          <strong className="font-semibold">Tip:</strong> Keep your objective
+          clear and targeted. Mention your career goal and add{" "}
+          <strong>keywords</strong> relevant to the job for better visibility.
+        </div>
+      </div>
     </div>
   );
 }
