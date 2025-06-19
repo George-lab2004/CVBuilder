@@ -6,14 +6,22 @@ import { useReactToPrint } from "react-to-print";
 import { usePersistentState } from "../../Preview/usePersistentState";
 import ObjectiveForm from "../../Forms/Objective/ObjectiveForm";
 import ExperienceForm from "../../Forms/Experience/ExperienceForm";
+import ProjectsForm from "../../Forms/Projects/ProjectsForm";
+type ProjectItem = {
+  title: string;
+  date: string;
+  description: string[];
+  technologies?: string[];
+  links: { platform: string; label: string; url: string }[];
+};
 
 type ExperienceItem = {
   title: string;
   date: string;
   location: string;
   description: string[];
+  // Remove this duplicate ProjectItem type definition and import it from a shared location instead.
 };
-
 export default function CvBuilder() {
   const [name, setName] = usePersistentState("name", "");
   const [role, setRole] = usePersistentState("role", "");
@@ -33,12 +41,15 @@ export default function CvBuilder() {
     "experiences",
     []
   );
-
+  const [projects, setProjects] = usePersistentState<ProjectItem[]>(
+    "projects",
+    []
+  );
   const [currentPage, setCurrentPage] = useState(1);
   const contentRef = useRef<HTMLDivElement>(null);
   const reactToPrintFn = useReactToPrint({ contentRef });
 
-  const nextPage = () => setCurrentPage((prev) => prev + 1);
+  const nextPage: () => void = () => setCurrentPage((prev) => prev + 1);
   const prevPage = () => setCurrentPage((prev) => prev - 1);
 
   const renderPageTitle = () => {
@@ -49,6 +60,9 @@ export default function CvBuilder() {
         return "🎯 Objective & Career Summary";
       case 3:
         return "💼 Work Experience";
+      case 4:
+        return ` 📝 Projects & Skills`;
+
       default:
         return "";
     }
@@ -96,6 +110,10 @@ export default function CvBuilder() {
                   experiences={experiences}
                 />
               )}
+              {/* Page 4 */}
+              {currentPage === 4 && (
+                <ProjectsForm setProjects={setProjects} projects={projects} />
+              )}
 
               {/* Navigation Buttons */}
               <div className="mt-6 flex flex-wrap items-center justify-start gap-3">
@@ -107,7 +125,7 @@ export default function CvBuilder() {
                     Previous
                   </button>
                 )}
-                {currentPage < 3 && (
+                {currentPage < 4 && (
                   <button
                     onClick={nextPage}
                     className="px-4 py-2 text-sm font-medium rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow transition"
@@ -163,6 +181,7 @@ export default function CvBuilder() {
                 summary={summary}
                 SummaryTitle={summaryTitle}
                 experiences={experiences}
+                projects={projects}
               />
             </div>
             <button

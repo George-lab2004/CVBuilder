@@ -19,6 +19,8 @@ export default function ExperienceForm({
   const [tempTitle, setTempTitle] = useState("");
   const [tempDate, setTempDate] = useState("");
   const [tempLocation, setTempLocation] = useState("");
+  // Temporary description input
+  // and list to manage bullet points
   const [tempDesc, setTempDesc] = useState("");
   const [descList, setDescList] = useState<string[]>([]);
 
