@@ -7,6 +7,10 @@ import { usePersistentState } from "../../Preview/usePersistentState";
 import ObjectiveForm from "../../Forms/Objective/ObjectiveForm";
 import ExperienceForm from "../../Forms/Experience/ExperienceForm";
 import ProjectsForm from "../../Forms/Projects/ProjectsForm";
+import SkillsForm from "../../Components/Skills/SkillsForm";
+import EducationForm from "../../Forms/Education/EducationForm";
+import CoursesForm from "../../Forms/Courses/CoursesForm";
+import InternshipForm from "../../Forms/Internship/InternshipForm";
 type ProjectItem = {
   title: string;
   date: string;
@@ -22,6 +26,33 @@ type ExperienceItem = {
   description: string[];
   // Remove this duplicate ProjectItem type definition and import it from a shared location instead.
 };
+type SkillItem = {
+  dataformOne: { title: string; skills: string[] }[];
+  dataformTwo: { title: string; skills: { name: string; level: number }[] }[];
+};
+type educationItem = {
+  degree: string;
+  GPA?: string;
+  major?: string;
+  institution: string;
+  location?: string;
+  date: string;
+  description?: string[];
+};
+type CoursesItem = {
+  title: string;
+  institution: string;
+  date: string;
+  description?: string[];
+};
+type InternshipItem = {
+  company: string;
+  role: string;
+  date: string;
+  location?: string;
+  description?: string[];
+};
+
 export default function CvBuilder() {
   const [name, setName] = usePersistentState("name", "");
   const [role, setRole] = usePersistentState("role", "");
@@ -45,6 +76,22 @@ export default function CvBuilder() {
     "projects",
     []
   );
+  const [skills, setSkills] = usePersistentState<SkillItem>("skills", {
+    dataformOne: [],
+    dataformTwo: [],
+  });
+  const [education, setEducation] = usePersistentState<educationItem[]>(
+    "education",
+    []
+  );
+  const [courses, setCourses] = usePersistentState<CoursesItem[]>(
+    "courses",
+    []
+  ); // Assuming Courses is similar to education
+  const [internships, setInternships] = usePersistentState<InternshipItem[]>(
+    "internships",
+    []
+  );
   const [currentPage, setCurrentPage] = useState(1);
   const contentRef = useRef<HTMLDivElement>(null);
   const reactToPrintFn = useReactToPrint({ contentRef });
@@ -61,8 +108,18 @@ export default function CvBuilder() {
       case 3:
         return "💼 Work Experience";
       case 4:
-        return ` 📝 Projects & Skills`;
+        return "🛠️ Projects "; // tools = hands-on work + abilities
 
+      case 5:
+        return "🧠 Skills"; // brain = knowledge & competence
+      case 6:
+        return "🎓 Education & Certifications"; // 🎓 = universal symbol for education
+
+      case 7:
+        return "📚 Courses"; // 📚 = focused learning resources
+
+      case 8:
+        return "🏢 Internships"; // 🏢 = company/office experience
       default:
         return "";
     }
@@ -114,21 +171,46 @@ export default function CvBuilder() {
               {currentPage === 4 && (
                 <ProjectsForm setProjects={setProjects} projects={projects} />
               )}
+              {/* Page 5 */}
+              {currentPage === 5 && (
+                <SkillsForm setSkills={setSkills} skills={skills} />
+              )}
+              {/* Page 6 */}
+              {currentPage === 6 && (
+                <EducationForm
+                  setEducation={setEducation}
+                  education={education}
+                />
+              )}
+              {/* Page 7 */}
+              {currentPage === 7 && (
+                <>
+                  <CoursesForm setCourses={setCourses} courses={courses} />
+                </>
+              )}
+              {currentPage === 8 && (
+                <>
+                  <InternshipForm
+                    setInternships={setInternships}
+                    internships={internships}
+                  />
+                </>
+              )}
 
               {/* Navigation Buttons */}
               <div className="mt-6 flex flex-wrap items-center justify-start gap-3">
                 {currentPage > 1 && (
                   <button
                     onClick={prevPage}
-                    className="px-4 py-2 text-sm font-medium rounded-lg bg-gray-500 hover:bg-gray-600 text-white shadow transition"
+                    className="px-4 cursor-pointer py-2 text-sm font-medium rounded-lg bg-gray-500 hover:bg-gray-600 text-white shadow transition"
                   >
                     Previous
                   </button>
                 )}
-                {currentPage < 4 && (
+                {currentPage < 8 && (
                   <button
                     onClick={nextPage}
-                    className="px-4 py-2 text-sm font-medium rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow transition"
+                    className="px-4 py-2 cursor-pointer text-sm font-medium rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow transition"
                   >
                     Next
                   </button>
@@ -144,7 +226,7 @@ export default function CvBuilder() {
                       window.location.reload();
                     }
                   }}
-                  className="px-4 py-2 text-sm font-medium rounded-lg bg-red-50 text-red-700 hover:bg-red-100 hover:text-red-800 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/40 dark:hover:text-red-300 transition-colors duration-200 border border-red-200 dark:border-red-800/50 shadow-sm flex items-center gap-2"
+                  className="px-4 py-2 text-sm cursor-pointer font-medium rounded-lg bg-red-50 text-red-700 hover:bg-red-100 hover:text-red-800 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/40 dark:hover:text-red-300 transition-colors duration-200 border border-red-200 dark:border-red-800/50 shadow-sm flex items-center gap-2"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -182,6 +264,10 @@ export default function CvBuilder() {
                 SummaryTitle={summaryTitle}
                 experiences={experiences}
                 projects={projects}
+                skills={skills}
+                education={education}
+                courses={courses}
+                internships={internships}
               />
             </div>
             <button

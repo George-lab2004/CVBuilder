@@ -64,5 +64,6 @@ export function useFormField(
     handleChange,
     handleSubmit,
     handleClose,
+    setValue,
   };
 }
