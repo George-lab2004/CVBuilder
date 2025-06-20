@@ -270,6 +270,14 @@ export default function CvBuilder() {
                 internships={internships}
               />
             </div>
+            <div className="mt-4 flex items-start gap-2 bg-cyan-100 text-cyan-900 dark:bg-cyan-900/20 dark:text-cyan-200 border border-cyan-300 dark:border-cyan-500 rounded-lg px-4 py-3 shadow-sm text-sm max-w-md">
+              <span className="text-xl">⚠️</span>
+              <div>
+                <strong className="font-semibold">Important:</strong> Your CV
+                data is <u>not saved automatically</u>. Please make sure to save
+                or download your resume before leaving the page or refreshing.
+              </div>
+            </div>
             <button
               onClick={reactToPrintFn}
               className="mt-6 px-6 py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white dark:bg-green-500 dark:hover:bg-green-600 shadow transition-colors duration-300"

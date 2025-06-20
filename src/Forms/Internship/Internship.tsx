@@ -30,14 +30,12 @@ export default function Internship({
 
           {/* Location (if available) */}
           {item.location && (
-            <div className="text-gray-800 dark:text-gray-300 italic">
-              {item.location}
-            </div>
+            <div className="text-gray-800  italic">{item.location}</div>
           )}
 
           {/* Description */}
           {item.description && item.description.length > 0 && (
-            <ul className="list-disc pl-5 mt-1 text-gray-700 dark:text-gray-300 space-y-1">
+            <ul className="list-disc pl-5 mt-1 text-gray-700  space-y-1">
               {item.description.map((point, idx) => (
                 <li key={idx}>{point}</li>
               ))}
