@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import gif from "../../../src/assets/resume.gif";
 
 export default function Home() {
@@ -16,16 +17,18 @@ export default function Home() {
               in Minutes
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-[90%] lg:max-w-[80%]">
-              Create a winning resume that gets noticed. Our AI-powered
-              templates help you showcase your skills and experience
-              professionally, increasing your chances of landing interviews.
+              Create a standout resume with our professionally designed
+              template. It highlights your skills and experience to help you
+              leave a strong impression and land more interviews.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3.5 rounded-lg font-medium transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-primary-500/20 dark:shadow-primary-400/10">
-                Start Building CV →
-              </button>
-              <button className="border-2 border-gray-300 dark:border-gray-600 hover:border-primary-500 dark:hover:border-primary-400 text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-300 px-8 py-3 rounded-lg font-medium transition-all duration-300">
-                Create Cover Letter
+              <button className="bg-primary-600 cursor-pointer hover:bg-primary-700 text-white px-8 py-3.5 rounded-lg font-medium transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-primary-500/20 dark:shadow-primary-400/10">
+                <Link
+                  to="/buildCV"
+                  className="hover:text-blue-500   text-xl  transition my-1"
+                >
+                  📄 Start Building CV{" "}
+                </Link>
               </button>
             </div>
 
@@ -37,7 +40,7 @@ export default function Home() {
               <div className="h-4 w-px bg-gray-300 dark:bg-gray-600"></div>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                ATS-optimized templates
+                ATS-optimized template
               </div>
             </div>
           </div>

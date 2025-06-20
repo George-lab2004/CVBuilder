@@ -84,23 +84,33 @@ export default function CvPreview({
   internships: InternshipItem[];
 }) {
   return (
-    <div className="px-4 py-2 m-2 mb-2 bg-white">
-      <Header name={name} job={role} />
-      <SocialLinks
-        github={github}
-        linkedin={linkedIn}
-        portfolio={portfolio}
-        email={email}
-        city={city}
-        phone={phone}
-      />
-      <Objective Summary={summary} summaryTitle={SummaryTitle} />
-      <Experience experiences={experiences} />
-      <Projects projects={projects} />
-      <Skills skills={skills} />
-      <Education education={education} />
-      <Courses courses={courses} />
-      <Internship internship={internships} />
-    </div>
+    <>
+      <div className="px-4 py-2 m-2 mb-2 bg-white">
+        <Header name={name} job={role} />
+        <SocialLinks
+          github={github}
+          linkedin={linkedIn}
+          portfolio={portfolio}
+          email={email}
+          city={city}
+          phone={phone}
+        />
+        <Objective Summary={summary} summaryTitle={SummaryTitle} />
+        <Experience experiences={experiences} />
+        <Projects projects={projects} />
+        <Skills skills={skills} />
+        <Education education={education} />
+        <Courses courses={courses} />
+        <Internship internship={internships} />
+      </div>
+      <div className="mt-4 flex items-start gap-2 bg-cyan-100 text-cyan-900 dark:bg-cyan-900/20 dark:text-cyan-200 border border-cyan-300 dark:border-cyan-500 rounded-lg px-4 py-3 shadow-sm text-sm max-w-md">
+        <span className="text-xl">⚠️</span>
+        <div>
+          <strong className="font-semibold">Important:</strong> Your CV data is{" "}
+          <u>not saved automatically</u>. Please make sure to save or download
+          your resume before leaving the page or refreshing.
+        </div>
+      </div>
+    </>
   );
 }
