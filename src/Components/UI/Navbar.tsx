@@ -55,7 +55,7 @@ export default function Navbars() {
           to="/"
           className="text-3xl font-nav font-bold text-gray-800 dark:text-gray-100"
         >
-          BuildMyCv
+          Build My Cv
         </Link>
         <div className="flex space-x-8 text-lg font-medium text-gray-700 dark:text-gray-200 font-nav">
           <NavLinks />
