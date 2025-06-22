@@ -39,10 +39,10 @@ export default function Navbars() {
 
       <button
         onClick={toggleTheme}
-        className="px-2 py-2 mt-3 md:mt-0 md:pb-2 cursor-pointer my-1 md:px-4 md:py-2 border  hover:bg-gray-200 dark:hover:bg-gray-700 transition "
+        className="px-2 py-2 mt-3 md:mt-0 md:pb-2 cursor-pointer my-1 md:px-4 md:py-2 border hover:bg-gray-200 dark:hover:bg-gray-700 transition"
         aria-label="Toggle dark mode"
       >
-        {isDarkMode ? "🌙 Dark" : "☀️ Light"}
+        {isDarkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
       </button>
     </>
   );
@@ -68,7 +68,7 @@ export default function Navbars() {
           to="/"
           className="text-2xl font-nav  font-bold text-gray-800 dark:text-gray-100"
         >
-          BuildMyCv
+          Build My Cv
         </Link>
         <button
           onClick={toggleMenu}
