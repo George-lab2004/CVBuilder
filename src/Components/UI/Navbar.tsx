@@ -30,11 +30,22 @@ export default function Navbars() {
 
   const NavLinks = () => (
     <>
+      <Link to="/" className="hover:text-blue-500 text-xl  transition my-1">
+        🏠 Home
+      </Link>
+
       <Link
         to="/buildCV"
         className="hover:text-blue-500   text-xl  transition my-1"
       >
         📄 CvBuilder{" "}
+      </Link>
+
+      <Link
+        to="/coverLetter"
+        className="hover:text-blue-500 text-xl  transition my-1"
+      >
+        CoverLetter
       </Link>
 
       <button

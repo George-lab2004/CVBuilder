@@ -5,6 +5,9 @@ import Layout from "./Layout/Layout";
 import Loader from "./Components/UI/Loader";
 import Home from "./Pages/Home/Home";
 import CvBuilder from "./Pages/CvBuilder/CvBuilder";
+import CoverLetter from "./Pages/CoverLetter/CoverLetter";
+import BasicPage from "./Pages/CoverLetter/BasicPage";
+import ModernPage from "./Pages/CoverLetter/ModernPage";
 
 function App() {
   const routes = createBrowserRouter([
@@ -18,6 +21,9 @@ function App() {
       children: [
         { path: "/", element: <Home /> },
         { path: "/buildCV", element: <CvBuilder /> },
+        { path: "/coverLetter", element: <CoverLetter /> },
+        { path: "/basic", element: <BasicPage /> },
+        { path: "/modern", element: <ModernPage /> },
       ],
     },
   ]);
